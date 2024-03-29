@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # ? required apps
     'rest_framework',
     # ? custom apps
-    'todo_app',
+    'tasks',
 ]
 
 MIDDLEWARE = [
