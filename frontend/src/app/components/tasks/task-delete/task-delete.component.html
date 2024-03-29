@@ -1,0 +1,18 @@
+<div class="container">
+    <div *ngIf="task" class="delete-task">
+        <h3>Are you sure want to delete "<span class="text-danger">{{ task.title }}</span>"?</h3>
+        <div class="btns mt-3">
+            <button
+                type="button"
+                class="btn btn-lg btn-danger me-3"
+                (click)="onDeleteTask(task.id)">
+                Yes, Delete
+            </button>
+            <a routerLink="/tasks" class="btn btn-lg btn-success">No, Cancel</a>
+        </div>
+    </div>
+
+    <div *ngIf="!task">
+        <h2 class="text-danger">No task found</h2>
+    </div>
+</div>

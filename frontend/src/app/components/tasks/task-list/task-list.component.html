@@ -20,7 +20,7 @@
                 <th appTaskStatus [completedStatus]="task.is_completed">
                     {{ task.is_completed|comStatus }}
                 </th>
-                <th>
+                <th class="">
                     <a [routerLink]="['view', task.id]" class="btn btn-primary me-2">
                         <i class="fa-regular fa-eye"></i>
                         View
@@ -29,10 +29,18 @@
                         <i class="fa-solid fa-pen-to-square"></i>
                         Edit
                     </a>
-                    <a [routerLink]="['delete', task.id]" class="btn btn-danger">
+                    <a [routerLink]="['delete', task.id]" class="btn btn-danger me-2">
                         <i class="fa-solid fa-trash-can"></i>
                         Delete
                     </a>
+                    <button
+                        type="button"
+                        class="btn"
+                        [ngClass]="task.is_completed? 'btn-danger':'btn-success'"
+                        (click)="onChangeCompleteStatus(task.id)">
+                        <i [ngClass]="task.is_completed ? 'fa-solid fa-xmark': 'fa-solid fa-check'"></i>
+                        {{ task.is_completed? 'Not completed?': 'Completed?' }}
+                    </button>
                 </th>
             </tr>
         </tbody>

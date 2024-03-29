@@ -4,15 +4,23 @@ import { Observable } from 'rxjs';
 
 import { Task } from '../../../model/task';
 import { TaskService } from '../../../services/task.service';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { DateTimePipe } from '../../../pipes/date-time.pipe';
 import { EmptyDataPipe } from '../../../pipes/empty-data.pipe';
 import { ComStatusPipe } from '../../../pipes/com-status.pipe';
+import { DetailResult } from '../../../model/detail-result';
 
 @Component({
   selector: 'app-task-detail',
   standalone: true,
-  imports: [NgIf, DateTimePipe, RouterLink, EmptyDataPipe, ComStatusPipe],
+  imports: [
+    NgIf,
+    DateTimePipe,
+    RouterLink,
+    EmptyDataPipe,
+    ComStatusPipe,
+    NgClass,
+  ],
   templateUrl: './task-detail.component.html',
   styleUrl: './task-detail.component.scss',
 })
@@ -35,9 +43,18 @@ export class TaskDetailComponent implements OnInit {
   }
 
   onFetchTask(id: number): void {
-    this.taskService.fetchTask(this.taskId).subscribe({
+    this.taskService.fetchTask(id).subscribe({
       next: (data: Task) => {
         this.task = data;
+      },
+    });
+  }
+
+  onChangeCompleteStatus(id: number): void {
+    this.taskService.modifyStatus(id).subscribe({
+      next: (data: DetailResult) => {
+        console.log(data);
+        this.onFetchTask(id);
       },
     });
   }

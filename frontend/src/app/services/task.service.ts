@@ -23,6 +23,14 @@ export class TaskService {
   }
 
   fetchTask(id: number): Observable<Task> {
-    return this.http.get<Task>(`${this.TASK_API}task/${id}`);
+    return this.http.get<Task>(`${this.TASK_API}task/${id}/`);
+  }
+
+  deleteTask(id: number): Observable<DetailResult> {
+    return this.http.delete<DetailResult>(`${this.TASK_API}task/${id}/`);
+  }
+
+  modifyStatus(id: number): Observable<DetailResult> {
+    return this.http.post<DetailResult>(`${this.TASK_API}task/ms/${id}/`, {});
   }
 }
