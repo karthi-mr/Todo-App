@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>Task Detail</h2>
+
+    <a class="btn btn-dark my-4" routerLink="/tasks">
+        <i class="fa-solid fa-arrow-left"></i>
+        Go Back
+    </a>
+
+    <table
+        class="table table-hover table-striped table-borderless table-light fw-medium fs-5"
+        *ngIf="task">
+        <tbody>
+            <!-- title -->
+            <tr>
+                <td>Title</td>
+                <td>{{ task.title }}</td>
+            </tr>
+            <!-- description -->
+            <tr>
+                <td>Description</td>
+                <td>{{ task.description| emptyData: 'No Description' }}</td>
+            </tr>
+            <!-- created at -->
+            <tr>
+                <td>Created at</td>
+                <td>{{ task.created_at| dateTime }}</td>
+            </tr>
+            <!-- modified at -->
+            <tr>
+                <td>Last Modified</td>
+                <td>{{ task.modified_at| dateTime }}</td>
+            </tr>
+            <!-- completed status -->
+            <tr>
+                <td>Completed status</td>
+                <td>{{ task.is_completed| comStatus }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

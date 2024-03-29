@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>Task List</h2>
+    <a routerLink="create" class="btn btn-success my-3">
+        <i class="fa-solid fa-plus"></i>
+        Add Task
+    </a>
+    <table class="table text-center mx-auto table-striped table-bordered table-hover">
+        <thead class="table-info">
+            <tr>
+                <th scope="col">Task Title</th>
+                <th scope="col">Last Modified Time</th>
+                <th scope="col">Task Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of tasks;">
+                <th>{{ task.title| shrink }}</th>
+                <th>{{ task.modified_at| dateTime }}</th>
+                <th appTaskStatus [completedStatus]="task.is_completed">
+                    {{ task.is_completed|comStatus }}
+                </th>
+                <th>
+                    <a [routerLink]="['view', task.id]" class="btn btn-primary me-2">
+                        <i class="fa-regular fa-eye"></i>
+                        View
+                    </a>
+                    <a [routerLink]="['edit', task.id]" fragment="edit" class="btn btn-success me-2">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Edit
+                    </a>
+                    <a [routerLink]="['delete', task.id]" class="btn btn-danger">
+                        <i class="fa-solid fa-trash-can"></i>
+                        Delete
+                    </a>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
