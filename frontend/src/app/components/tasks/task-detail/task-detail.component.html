@@ -46,7 +46,7 @@
             <i [ngClass]="task.is_completed ? 'fa-solid fa-xmark': 'fa-solid fa-check'"></i>
             {{ task.is_completed? 'Not completed?': 'Completed?' }}
         </button>
-        <a class="btn btn-success ms-2" [routerLink]="['../../', 'edit', task.id]" fragment="edit">
+        <a class="btn btn-success ms-2" [routerLink]="['../../', 'edit', task.id]">
             <i class="fa-solid fa-pen-to-square"></i>
             Edit
         </a>

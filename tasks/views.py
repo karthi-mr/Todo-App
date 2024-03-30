@@ -13,7 +13,7 @@ class TaskListCreateView(generics.ListCreateAPIView):
     """
     Create Task and List all tasks implementation
     """
-    queryset = Task.objects.all()
+    queryset = Task.objects.all().order_by('-modified_at')
     
     @override
     def get_serializer_class(self) -> Any:

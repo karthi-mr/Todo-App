@@ -3,6 +3,7 @@ import { TaskListComponent } from './components/tasks/task-list/task-list.compon
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TaskDetailComponent } from './components/tasks/task-detail/task-detail.component';
 import { TaskDeleteComponent } from './components/tasks/task-delete/task-delete.component';
+import { TaskEditComponent } from './components/tasks/task-edit/task-edit.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/tasks', pathMatch: 'full' },
@@ -10,7 +11,9 @@ export const routes: Routes = [
     path: 'tasks',
     children: [
       { path: '', component: TaskListComponent },
+      { path: 'create', component: TaskEditComponent },
       { path: 'view/:id', component: TaskDetailComponent },
+      { path: 'edit/:id', component: TaskEditComponent },
       { path: 'delete/:id', component: TaskDeleteComponent },
     ],
   },
