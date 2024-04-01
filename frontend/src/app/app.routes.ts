@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { TaskDetailComponent } from './components/tasks/task-detail/task-detail.component';
 import { TaskDeleteComponent } from './components/tasks/task-delete/task-delete.component';
 import { TaskEditComponent } from './components/tasks/task-edit/task-edit.component';
+import { cancelEditTaskGuard } from './guard/cancel-edit-task.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/tasks', pathMatch: 'full' },
@@ -13,7 +14,11 @@ export const routes: Routes = [
       { path: '', component: TaskListComponent },
       { path: 'create', component: TaskEditComponent },
       { path: 'view/:id', component: TaskDetailComponent },
-      { path: 'edit/:id', component: TaskEditComponent },
+      {
+        path: 'edit/:id',
+        component: TaskEditComponent,
+        canDeactivate: [cancelEditTaskGuard],
+      },
       { path: 'delete/:id', component: TaskDeleteComponent },
     ],
   },

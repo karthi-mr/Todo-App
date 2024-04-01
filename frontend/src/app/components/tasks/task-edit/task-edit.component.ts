@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
@@ -18,6 +18,8 @@ export class TaskEditComponent implements OnInit {
   formTitle: string = '';
   formDesc: string = '';
   task!: Task;
+  isCancel: boolean = false;
+  @ViewChild('taskForm') form!: NgForm;
 
   constructor(
     private taskService: TaskService,
@@ -63,5 +65,10 @@ export class TaskEditComponent implements OnInit {
         },
       });
     }
+  }
+
+  onCancel(): void {
+    this.isCancel = true;
+    this.router.navigate(['tasks']);
   }
 }
